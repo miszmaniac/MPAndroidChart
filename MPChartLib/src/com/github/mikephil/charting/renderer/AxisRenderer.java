@@ -16,6 +16,8 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
  */
 public abstract class AxisRenderer extends Renderer {
 
+    protected Paint mlastValuePaint;
+
     protected Transformer mTrans;
 
     /** paint object for the grid lines */
@@ -47,6 +49,10 @@ public abstract class AxisRenderer extends Renderer {
         mAxisLinePaint.setColor(Color.BLACK);
         mAxisLinePaint.setStrokeWidth(1f);
         mAxisLinePaint.setStyle(Style.STROKE);
+
+        mlastValuePaint = new Paint();
+        mlastValuePaint.setColor(Color.CYAN);
+        mlastValuePaint.setStyle(Style.FILL);
 
 		mLimitLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		mLimitLinePaint.setStyle(Paint.Style.STROKE);

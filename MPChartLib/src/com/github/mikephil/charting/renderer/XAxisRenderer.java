@@ -162,15 +162,20 @@ public class XAxisRenderer extends AxisRenderer {
                     }
                 }
 
-                if (lastValue) {
-                    c.drawCircle(position[0], pos, 5, mlastValuePaint);
-                    c.drawText(label, position[0],
-                            pos,
-                            mAxisLabelPaint);
+                if (lastValue && mXAxis.isLastValueIndicated()) {
+                    Paint lastValueBackgroundPaint = new Paint();
+                    Paint lastValueTextPaint = new Paint(mAxisLabelPaint);
+
+                    lastValueTextPaint.setColor(mXAxis.getLastValueTextColor());
+
+                    lastValueBackgroundPaint.setColor(mXAxis.getLastValueBackgroundColor());
+                    lastValueBackgroundPaint.setStyle(Paint.Style.FILL);
+                    lastValueBackgroundPaint.setAntiAlias(true);
+
+                    c.drawCircle(position[0], pos + 4 - mAxisLabelPaint.getTextSize() / 2, 9 + (mAxisLabelPaint.getTextSize() / 2), lastValueBackgroundPaint);
+                    c.drawText(label, position[0], pos, lastValueTextPaint);
                 } else {
-                    c.drawText(label, position[0],
-                            pos,
-                            mAxisLabelPaint);
+                    c.drawText(label, position[0], pos, mAxisLabelPaint);
                 }
             }
         }
@@ -199,7 +204,7 @@ public class XAxisRenderer extends AxisRenderer {
             if (position[0] >= mViewPortHandler.offsetLeft()
                     && position[0] <= mViewPortHandler.getChartWidth()) {
 
-                c.drawLine(position[0], mViewPortHandler.contentBottom() - 10, position[0],
+                c.drawLine(position[0], mViewPortHandler.contentBottom() - 20, position[0],
                         mViewPortHandler.contentBottom(), mGridPaint);
             }
         }

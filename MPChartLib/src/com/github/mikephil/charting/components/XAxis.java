@@ -1,6 +1,8 @@
 
 package com.github.mikephil.charting.components;
 
+import android.graphics.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,12 +10,14 @@ import java.util.List;
  * Class representing the x-axis labels settings. Only use the setter methods to
  * modify it. Do not access public variables directly. Be aware that not all
  * features the XLabels class provides are suitable for the RadarChart.
- * 
+ *
  * @author Philipp Jahoda
  */
 public class XAxis extends AxisBase {
 
-    /** the arraylist containing all the x-axis labels */
+    /**
+     * the arraylist containing all the x-axis labels
+     */
     protected List<String> mValues = new ArrayList<String>();
 
     /**
@@ -60,14 +64,24 @@ public class XAxis extends AxisBase {
      */
     protected boolean mAdjustXAxisLabels = true;
 
-    /** the position of the x-labels relative to the chart */
+    /**
+     * the position of the x-labels relative to the chart
+     */
     private XAxisPosition mPosition = XAxisPosition.TOP;
 
-    /** enum for the position of the x-labels relative to the chart */
+    private Boolean mIndicateLastValue = false;
+
+    private int mLastValueBackgroundColor = Color.GRAY;
+
+    private int mLastValueTextColor = Color.GRAY;
+
+    /**
+     * enum for the position of the x-labels relative to the chart
+     */
     public enum XAxisPosition {
         TOP, BOTTOM, BOTH_SIDED, TOP_INSIDE, BOTTOM_INSIDE
     }
-    
+
     public XAxis() {
         super();
     }
@@ -75,7 +89,7 @@ public class XAxis extends AxisBase {
     /**
      * if set to true, the x-label entries will adjust themselves when scaling
      * the graph default: true
-     * 
+     *
      * @param enabled
      */
     public void setAdjustXLabels(boolean enabled) {
@@ -85,7 +99,7 @@ public class XAxis extends AxisBase {
     /**
      * returns true if the x-labels adjust themselves when scaling the graph,
      * false if not
-     * 
+     *
      * @return
      */
     public boolean isAdjustXLabelsEnabled() {
@@ -101,7 +115,7 @@ public class XAxis extends AxisBase {
 
     /**
      * sets the position of the x-labels
-     * 
+     *
      * @param pos
      */
     public void setPosition(XAxisPosition pos) {
@@ -111,7 +125,7 @@ public class XAxis extends AxisBase {
     /**
      * Sets the space (in characters) that should be left out between the x-axis
      * labels, default 4
-     * 
+     *
      * @param space
      */
     public void setSpaceBetweenLabels(int space) {
@@ -121,7 +135,7 @@ public class XAxis extends AxisBase {
     /**
      * Returns the space (in characters) that should be left out between the
      * x-axis labels
-     * 
+     *
      * @param space
      */
     public int getSpaceBetweenLabels() {
@@ -131,7 +145,7 @@ public class XAxis extends AxisBase {
     /**
      * if set to true, the chart will avoid that the first and last label entry
      * in the chart "clip" off the edge of the chart or the screen
-     * 
+     *
      * @param enabled
      */
     public void setAvoidFirstLastClipping(boolean enabled) {
@@ -140,7 +154,7 @@ public class XAxis extends AxisBase {
 
     /**
      * returns true if avoid-first-lastclipping is enabled, false if not
-     * 
+     *
      * @return
      */
     public boolean isAvoidFirstLastClippingEnabled() {
@@ -149,7 +163,7 @@ public class XAxis extends AxisBase {
 
     /**
      * Sets the labels for this axis.
-     * 
+     *
      * @param values
      */
     public void setValues(List<String> values) {
@@ -158,13 +172,13 @@ public class XAxis extends AxisBase {
 
     /**
      * Returns the labels for this axis.
-     * 
+     *
      * @return
      */
     public List<String> getValues() {
         return mValues;
     }
-    
+
     @Override
     public String getLongestLabel() {
 
@@ -178,5 +192,29 @@ public class XAxis extends AxisBase {
         }
 
         return longest;
+    }
+
+    public void setLastValueIndicate(Boolean indicateLastValue) {
+        mIndicateLastValue = indicateLastValue;
+    }
+
+    public void setLastValueBackgroundColor(int color) {
+        mLastValueBackgroundColor = color;
+    }
+
+    public void setLastValueTextColor(int color) {
+        mLastValueTextColor = color;
+    }
+
+    public Boolean isLastValueIndicated() {
+        return mIndicateLastValue;
+    }
+
+    public int getLastValueBackgroundColor() {
+        return mLastValueBackgroundColor;
+    }
+
+    public int getLastValueTextColor() {
+        return mLastValueTextColor;
     }
 }

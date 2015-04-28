@@ -47,7 +47,7 @@ public class LineChartRenderer extends DataRenderer {
     protected CircleBuffer[] mCircleBuffers;
 
     public LineChartRenderer(LineDataProvider chart, ChartAnimator animator,
-            ViewPortHandler viewPortHandler) {
+                             ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
         mChart = chart;
 
@@ -128,7 +128,7 @@ public class LineChartRenderer extends DataRenderer {
 
     /**
      * Draws a cubic line.
-     * 
+     *
      * @param c
      * @param dataSet
      * @param entries
@@ -239,7 +239,7 @@ public class LineChartRenderer extends DataRenderer {
     }
 
     protected void drawCubicFill(Canvas c, LineDataSet dataSet, Path spline, Transformer trans,
-            int from, int to) {
+                                 int from, int to) {
 
         float fillMin = mChart.getFillFormatter()
                 .getFillLinePosition(dataSet, mChart.getLineData(), mChart.getYChartMax(),
@@ -263,7 +263,7 @@ public class LineChartRenderer extends DataRenderer {
 
     /**
      * Draws a normal line.
-     * 
+     *
      * @param c
      * @param dataSet
      * @param entries
@@ -316,9 +316,9 @@ public class LineChartRenderer extends DataRenderer {
                 // bounds
                 if (!mViewPortHandler.isInBoundsLeft(buffer.buffer[j + 2])
                         || (!mViewPortHandler.isInBoundsTop(buffer.buffer[j + 1]) && !mViewPortHandler
-                                .isInBoundsBottom(buffer.buffer[j + 3]))
+                        .isInBoundsBottom(buffer.buffer[j + 3]))
                         || (!mViewPortHandler.isInBoundsTop(buffer.buffer[j + 1]) && !mViewPortHandler
-                                .isInBoundsBottom(buffer.buffer[j + 3])))
+                        .isInBoundsBottom(buffer.buffer[j + 3])))
                     continue;
 
                 // get the color that is set for this line-segment
@@ -346,8 +346,8 @@ public class LineChartRenderer extends DataRenderer {
     }
 
     protected void drawLinearFill(Canvas c, LineDataSet dataSet, List<Entry> entries, int minx,
-            int maxx,
-            Transformer trans) {
+                                  int maxx,
+                                  Transformer trans) {
 
         mRenderPaint.setStyle(Paint.Style.FILL);
 
@@ -370,7 +370,7 @@ public class LineChartRenderer extends DataRenderer {
 
     /**
      * Generates the path that is used for filled drawing.
-     * 
+     *
      * @param entries
      * @return
      */
@@ -548,13 +548,13 @@ public class LineChartRenderer extends DataRenderer {
             mHighlightPaint.setColor(set.getHighLightColor());
 
             int xIndex = indices[i].getXIndex(); // get the
-                                                 // x-position
+            // x-position
 
             if (xIndex > mChart.getXChartMax() * mAnimator.getPhaseX())
                 continue;
 
             float y = set.getYValForXIndex(xIndex) * mAnimator.getPhaseY(); // get
-                                                                            // the
+            // the
             // y-position
 
             float[] pts = new float[] {
